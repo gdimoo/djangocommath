@@ -25,7 +25,7 @@ SECRET_KEY = '^bqe9zi&-jd6526@ar+(x+$=eftxvob^it#4m!(c1v^r&l41k!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["kgreat.pythonanywhere.com"]
 
 
 # Application definition
@@ -119,3 +119,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOF ='/home/kgreat/djangocommath/mysite/static'

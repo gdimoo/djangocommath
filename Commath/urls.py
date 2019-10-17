@@ -9,7 +9,7 @@ urlpatterns = [
     path('64bit/', views.decto64fp),
     path('AxBs/', views.AxBs),
 
-    path('Differentiation/', views.differentiation),
-    path('Integration/', views.integration),
-    path('Rootfinding/', views.rootfinding),
+    path('Differentiation', views.differentiation),
+    path('Integration', views.integration),
+    path('Rootfinding', views.rootfinding),
 ]

@@ -165,12 +165,12 @@ def differentiation(req):
 		re4 = ( f(x+2*h,fx) - 4*f(x+h,fx)+ 6*f(x,fx) -4*f(x-h,fx) +f(x-2*h,fx) ) / h**4
 
 		print(f'fu={function} fx={fx} x={x} h={h} re1={re1}')
-		return render(req,'myapp/Differentiation.html',{'re1':re1,'re2':re2,'re3':re3,'re4':re4})
-	return render(req,'myapp/Differentiation.html')
+		return render(req, 'myapp/index.html', {'re1': re1, 're2': re2, 're3': re3, 're4': re4})
+	return render(req, 'myapp/index.html')
 
 def integration(req):
 	if req.method == 'POST':
-		function = req.POST.get('function')
+		function = req.POST.get('Integration')
 		fx = req.POST.get('fx')
 		print(f,function)
 		if function == 'trapezoidal':
@@ -182,9 +182,9 @@ def integration(req):
 			I = [ f(a,fx), f(b,fx) ]
 			I.extend([ 2*f(a+i*h,fx) for i in range(1,n) ])
 			
-			x = sum(I)*h/2
+			x1 = sum(I)*h/2
 
-			return render(req,'myapp/Integration.html',{'x':x})
+			return render(req,'myapp/index.html',{'x1':x1})
 		elif function == 'simson':
 			a = 1 
 			b = 2 
@@ -195,12 +195,12 @@ def integration(req):
 			I.extend([ 2*f(a+i*h,fx) for i in range(2,n,2) ])
 			I.extend([ 4*f(a+i*h,fx) for i in range(1,n,2) ])
 			x = sum(I)*h/3
-			return render(req,'myapp/Integration.html',{'x':x})
-	return render(req,'myapp/Integration.html')
+			return render(req,'myapp/index.html',{'x':x})
+	return render(req, 'myapp/index.html')
 
 def rootfinding(req):
 	if req.method == 'POST':
-		function = req.POST.get('function')
+		function = req.POST.get('Rootfinding')
 		fx = req.POST.get('fx')
 		print(function,fx)
 		if function == 'incremental':
@@ -211,7 +211,7 @@ def rootfinding(req):
 			while abs(f(x,fx)-0) > epsilon:
 				x+=step
 				n+=1
-			return render(req,'myapp/Rootfinding.html',{'x':x})
+			return render(req,'myapp/index.html',{'x':x})
 		elif function == 'bisection':
 			x=0
 			a=-2
@@ -233,7 +233,7 @@ def rootfinding(req):
 					else:
 						b = m
 						print(f'ขยับ b ช่วงค่าใหม่ที่ต้องค้นหาคือ ({a}, {b})')
-			return render(req,'myapp/Rootfinding.html',{'x':x})
+			return render(req, 'myapp/index.html', {'x': x})
 		elif function == 'newton':
 			dxx = req.POST.get('dx')
 			x = 0
@@ -247,7 +247,7 @@ def rootfinding(req):
 				dx = -f(x,fx)/d2(x,dxx)
 				x=dx
 				n+=1
-			return render(req,'myapp/Rootfinding.html',{'x':x})
+			return render(req,'myapp/index.html',{'x':x})
 		elif function == 'secant':
 			x = -1
 			n = 20
@@ -256,5 +256,5 @@ def rootfinding(req):
 				Qx = ( f(x+h,fx) - f(x,fx)) /h
 				dx = - f(x,fx)/Qx
 				x = x+dx
-			return render(req,'myapp/Rootfinding.html',{'x':x})
-	return render(req,'myapp/Rootfinding.html')
+			return render(req,'myapp/index.html',{'x':x})
+	return render(req, 'myapp/index.html')
